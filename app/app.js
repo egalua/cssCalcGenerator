@@ -436,9 +436,9 @@ class CalcModel{
         v0.div(vpW0);
 
         if(v0.denominator < 0){
-            return '100vw * ( 0 - ' + v0.getAbs().numerator + ' / ' + v0.denominator +  ')';
+            return '100vw * (0 - ' + v0.getAbs().numerator + ' / ' + v0.denominator +  ')';
         }
-        return '100vw * ( ' + v0.numerator + ' / ' + v0.denominator + ')';
+        return '100vw * (' + v0.numerator + ' / ' + v0.denominator + ')';
 
     }
 
