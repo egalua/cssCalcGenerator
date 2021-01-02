@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Responsive design</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container" id="calc">
+            <table class="input-box">
+                <tr class="input">
+                    <th></th>
+                    <th> <span>size</span></th>
+                    <th colspan="2"> <span>viewport width</span></th>
+                </tr>
+                <tr class="input">
+                    <td class="input__key"><span>values 0</span></td>
+                    <td class="input__val input__val-v0" tabindex="1" contenteditable></td>
+                    <td class="input__val input__val-vpW0" colspan="2" tabindex="2" contenteditable></td>
+                </tr>
+                <tr class="input">
+                    <td class="input__key"><span>values 1</span></td>
+                    <td class="input__val input__val-v1" tabindex="3" contenteditable></td>
+                    <td class="input__val input__val-vpW1" colspan="2" tabindex="4" contenteditable></td>
+                </tr>
+            </table>
+            <div class="output">
+                <div class="output__key" tabindex="5">calc</div>
+                <div class="output__val"></div>
+                <div class="output__copy-btn" tabindex="6">copy</div>
+                <div class="output__clear-btn" tabindex="0">clear</div>
+            </div>
+        </div>
+
+        <section class="description">
+            <h3 class="description__title">Назначение полей и кнопок</h3>
+            <p>
+                <strong>values 0</strong><span> - начальные значения размера (size) и ширины окна браузера (viewport width)</span>
+            </p>
+            <p>
+                <strong>values 1</strong><span> – конечные значения размера (size) и ширины окна браузера (viewport width)</span>
+            </p>
+            <p>
+                <strong>calc</strong><span> - кнопка для формирования выражения calc()</span>
+            </p>
+            <p>
+                <strong>copy</strong><span> - кнопка для копирования полученного выражения calc() в буфер обмена</span>
+            </p>
+            <p>
+                <strong>clear</strong><span> - кнопка для отчистки всех полей</span>
+            </p>
+        </section>
+        <section class="function">
+            <h3 class="function__title">Что делает скрипт</h3>
+            <p>
+                Скрипт формирует выражение css calc(), позволяющее менять размер в заданном интервале в зависимости от ширины окна браузера.
+            </p>
+            <p>
+                <strong>Исходные данные:</strong> начальное и конечное значение размера, а так же начальное и конечное значение ширины окна браузера, при которых должны соблюдаться указанные размеры.
+            </p>
+            <p>
+                <strong>Результат:</strong> выражение css calc() для вычисления текущего значения размера в зависимости от ширины окна браузера.
+            </p>
+        </section>
+        <section class="theory">
+            <h3 class="theory__title">Как это работает (теория)</h3>
+            <p>
+                Например, необходимо, чтобы размер шрифта в абзацах менялся в диапазоне от 18px при ширине окна браузера 1440px до 12px при ширине окна браузера 320px. 
+            </p>
+            <p>
+                Математически это эквивалентно уравнению линии, проходящей через две точки.
+            </p>
+            <p>
+                Соответствующее уравнение выглядит следующим образом: 
+            </p>
+            <p>
+                y = x * (y0 - y1) / (x0 - x1) + [y1* (x0 - x1) - x1*(y0 - y1)] /(x0 - x1), где
+            </p>
+            <p>
+                x0, x1 – начальное и конечное значение независимой переменной
+            </p>
+            <p>
+                y0, y1 – начальное и конечное значение функции при указанных значениях независимых переменных
+            </p>
+            <p>
+                или
+            </p>
+            <p>
+                F = 100vw * (y0 - y1) / (x0 - x1) + [y1* (x0 - x1) - x1*(y0 - y1)] /(x0 - x1), где
+            </p>
+            <p>
+                x0, x1 – начальное и конечное значение ширины окна браузера
+            </p>
+            <p>
+                y0, y1 – начальное и конечное значение размера при соответствующей ширине окна браузера
+            </p>
+            <p>
+                100vw – это текущая ширина окна браузера  (100% ширины окна браузера)
+            </p>
+            <p>
+                F – текущее значение размера, в зависимости от ширины окна браузера
+            </p>
+            <p>
+                Подставляя исходные данные в уравнение, получим
+            </p>
+            <p>
+                x0 =1440px, x1 = 320px
+            </p>
+            <p>
+                y0 = 18px, y1 = 12px
+            </p>
+            <p>
+                F = 100vw * (18px-12px)/(1440px-320px)+[12px*(1440px-320px) - 320px*(18px-12px)]/(1440px-320px)
+            </p>
+            <p>
+                F = 100vw *6/1120 + [13440px - 1920px]/1120
+            </p>
+            <p>
+                F = 100vw*3/560 + 11520px/1120
+            </p>
+            <p>
+                F = 100vw*3/560 +72px/7
+            </p>
+            <p>
+                Таким образом, выражение для font-size выглядит так:
+            </p>
+            <code>
+                <pre>
+    p{
+        font-size: calc(100vw * (3 / 560) + (72px / 7));
+    }
+                </pre>
+            </code>
+            <h4>Примечание 1:</h4>
+            <p>
+                    Для фиксации размеров вне диапазона можно использовать медиазапросы
+            </p>
+            <code>
+                <pre>
+    @media screen and (max-width: 320px){
+        p{
+            font-size: 12px;
+        }
+    }
+    @media screen and (min-width: 1440px){
+        p{
+            font-size: 18px;
+        }
+    }
+                </pre>
+            </code>
+            <h4>Примечание 2:</h4>
+            <p>
+                    Диапазонов может быть несколько, тогда для каждого диапазона значений ширины окна браузера, будет своё выражение calc()
+            </p>
+        </section>
+    </div>
+    <script src="app/app.js"></script>
+</body>
+</html>

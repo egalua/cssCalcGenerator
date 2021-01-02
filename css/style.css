@@ -1,0 +1,132 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+/* ----- calc ----- */
+.container{
+    min-width: 300px;
+    max-width: 600px;
+    width: calc(100vw * ( 15 / 56) + (1500px / 7));
+    margin: 10px auto;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 4px;
+    box-sizing: border-box;
+    font-size: calc(100vw * ( 1 / 560) + (108px / 7));
+}
+/* таблица */
+.input-box{ 
+    width: 100%;
+}
+.input > th{
+    white-space: nowrap; 
+}
+.input > th:nth-child(1){
+    width: 20%;
+}
+.input > th:nth-child(2){
+    width: 40%;
+}
+.input > th:nth-child(3){
+    width: 40%;
+}
+/* поля ввода */
+.input__val{
+    background: rgba(0, 255, 5, 0.2);
+    border: 1px solid #ffc;
+    border-radius: 5px;
+    padding: 4px;
+    
+}
+.input__key, /* подпись к полям ввода */
+.output__key, /* кнопка calc */
+.output__copy-btn, /* кнопка copy */
+.output__clear-btn{ /* кнопка clear */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.input__key{
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* блок с результатами вычислений */
+.output{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+.output > * + *{
+    margin-left: 10px;
+}
+/* кнопки блока с результатами вычислений */
+.output__key, .output__copy-btn, .output__clear-btn{
+    border: 1px solid grey;
+    padding: 4px 10px;
+    border-radius: 5px;
+    background: #cfb;
+}
+.output__key:focus{
+    background: #bec;
+}
+.output__key:hover,
+.output__copy-btn,
+.output__clear-btn{
+    cursor: default;
+}
+/* поле вывода результатов */
+.output__val{
+    background: #cfb;
+    flex-grow: 1;
+    border-radius: 5px;
+    border: 1px solid #ad9;
+    padding: 4px;
+}
+/* кнопка copy */
+.output__copy-btn{
+    padding: auto;
+}
+.container > * + *{
+    margin-top: 5px;
+}
+
+/* ----- description ----- */
+.description{
+    padding: 0 10px;
+}
+.description__title{
+    text-align: center;
+}
+/* ----- function ----- */
+.function{
+    padding: 0 10px;
+}
+.function__title{
+    text-align: center;
+}
+/* ----- theory ----- */
+.theory{
+    padding: 0 10px;
+}
+.theory__title{
+    text-align: center;
+}
+
+@media screen and (max-width: 320px){
+    .container{
+        font-size: 16px;
+    }
+}
+@media screen and (min-width: 1440px){
+    .container{
+        font-size: 18px;
+    }
+}
