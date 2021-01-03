@@ -28,13 +28,13 @@ body{
     white-space: nowrap; 
 }
 .input > th:nth-child(1){
-    width: 20%;
+    width: 14%;
 }
 .input > th:nth-child(2){
-    width: 40%;
+    width: 43%;
 }
 .input > th:nth-child(3){
-    width: 40%;
+    width: 43%;
 }
 /* поля ввода */
 .input__val{
