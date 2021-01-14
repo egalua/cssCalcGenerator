@@ -576,18 +576,32 @@ class CalcView{
      */
     clearHandler(ev){
         let target = ev.target;
+        let code = ev.code;
         target = target.closest('.' + this.cssClasses.clearButton);
-        
-        
 
-        if(target !== null){
-            const inputBloks = this.box.querySelectorAll('.' + this.cssClasses.inputs); 
-            const output = this.box.querySelector('.' + this.cssClasses.result);
-            for(let i = 0; i < inputBloks.length; i++){
-                inputBloks[i].innerHTML = '';
-            }
-            output.innerHTML = '';
+        if(target !== null || code == 'Escape'){
+            ev.preventDefault();
+            this.clearFields();
+            this.setStartFocus();
         }
+    }
+    // ----- clear методы-----
+    /**
+     * Отчищает все поля ввода
+     */
+    clearFields(){
+        const inputBloks = this.box.querySelectorAll('.' + this.cssClasses.inputs); 
+        const output = this.box.querySelector('.' + this.cssClasses.result);
+        for(let i = 0; i < inputBloks.length; i++){
+            inputBloks[i].innerHTML = '';
+        }
+        output.innerHTML = '';
+    }
+    // ----- set методы -----
+    setStartFocus(){
+        const startField = this.box.querySelector('.' + this.cssClasses.startVal);
+        console.log('setStartFocus: startField = ', startField);
+        startField.focus();
     }
 
 }
